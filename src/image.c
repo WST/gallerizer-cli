@@ -1,4 +1,10 @@
 
+/**
+* Gallerizer — an image gallery indexing tool
+* CLI version (pure libjpeg, no GD required)
+* © 2012 Ilya I. Averkov (WST) <admin@jsmart.web.id>
+*/
+
 #include "image.h"
 
 #include <stdio.h>

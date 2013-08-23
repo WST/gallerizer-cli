@@ -1,6 +1,8 @@
 
 /**
-* © 2012 Ilya I. Averkov <admin@jsmart.web.id>
+* Gallerizer — an image gallery indexing tool
+* CLI version (pure libjpeg, no GD required)
+* © 2012 Ilya I. Averkov (WST) <admin@jsmart.web.id>
 */
 
 #include "string_functions.h"
