@@ -19,10 +19,12 @@ struct my_error_mgr {
 	jmp_buf setjmp_buffer;
 };
 
+typedef struct my_error_mgr * my_error_ptr;
+
 METHODDEF(void) my_error_exit (j_common_ptr cinfo);
 
 METHODDEF(void) my_error_exit (j_common_ptr cinfo) {
-	(struct my_error_mgr *) myerr = (my_error_ptr) cinfo->err;
+	my_error_ptr myerr = (my_error_ptr) cinfo->err;
 	longjmp(myerr->setjmp_buffer, 1);
 }
 
@@ -182,9 +184,9 @@ Image *openJpeg(const char *filename) {
 		memcpy((& result->canvas[(cinfo.output_scanline - 1) * cinfo.output_width]), buffer, row_stride);
 	}
 	
-	// Прибираемся
-	jpeg_finish_decompress(& cinfo);
-	jpeg_destroy_decompress(& cinfo);
+	// Прибираемся // HINT: memory leak
+	//jpeg_finish_decompress(& cinfo);
+	//jpeg_destroy_decompress(& cinfo);
 	fclose(infile);
 	
 	return result;
