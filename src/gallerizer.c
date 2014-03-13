@@ -151,7 +151,7 @@ Image *resizeImage(Image *image, unsigned int width, unsigned int height) {
 int main(int argc, char **argv) {
 	
 	// Про мну
-	consoleSimpleMessage("\n Gallerizer 0.2 — an image gallery indexer\n Ilja I. Averkov <admin@jsmart.web.id>\n");
+	consoleSimpleMessage("\n Gallerizer 0.2 — an image gallery indexer\n Created by Ilya Averkov <ilya.averkov.net>\n");
 	
 	// Проверим синтаксис команды
 	if(argc != 2) {

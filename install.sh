@@ -4,8 +4,8 @@ PROJECT_TARGET="gallerizer"
 PROJECT_SHARED="dist/shared.tar.bz2"
 PROJECT_CONFIG="dist/gallerizer.ini"
 PROJECT_FILES="`cd src && ls *.c*`"
-#CFLAGS="-ffast-math -Os -pipe"
-CFLAGS="-g"
+CFLAGS="-ffast-math -Os -pipe"
+#CFLAGS="-g"
 COMPILER="`which gcc`"
 INSTALL="`which install`"
 CP="`which cp`"
@@ -17,6 +17,10 @@ CONFIGDIR="/etc"
 SHAREDIR="/usr/share"
 
 DEFINE="-DUNIX -DCONFIG_FILENAME=\"${CONFIGDIR}/${PROJECT_TARGET}.ini\" -DGALLERIZER_SHARED=\"${SHAREDIR}/${PROJECT_TARGET}\""
+
+if [[ ! -d build ]]; then
+	mkdir build
+fi
 
 for i in ${PROJECT_FILES}; do
 	NAME=$(echo $i | sed -e 's/\.[^.]*$//')
@@ -41,3 +45,7 @@ ${COMMAND} || { echo "Failed to install executable! Check permissions and run th
 COMMAND="${TAR} -xvf ${PROJECT_SHARED} --directory ${SHAREDIR}";
 echo ${COMMAND}
 ${COMMAND} || { echo "Failed to install shared files! Check permissions and run this script again."; exit 1; }
+
+COMMAND="rm -rf build gallerizer"
+echo ${COMMAND}
+${COMMAND} || { echo "Failed to clean up"; exit 1; }
